@@ -1,6 +1,7 @@
 NAME		=	philo
 
 FILES		=	main.c\
+				parser.c\
 
 SRCS		=	$(addprefix src/, $(FILES))
 

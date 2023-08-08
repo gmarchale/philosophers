@@ -12,4 +12,10 @@ typedef struct s_philo
 	int	philo_id;
 }	t_philo;
 
+/*** FUNCTIONS ***/
+
+/* Parser */
+int check_arguments(char **argv);
+int parser(int argc, char **argv);
+
 #endif
