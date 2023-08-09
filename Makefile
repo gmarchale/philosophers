@@ -2,6 +2,7 @@ NAME		=	philo
 
 FILES		=	main.c\
 				parser.c\
+				ft_atoi.c\
 
 SRCS		=	$(addprefix src/, $(FILES))
 
