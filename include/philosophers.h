@@ -9,6 +9,7 @@
 
 /*** STRUCT ***/
 
+/*
 typedef struct s_philo
 {
 	int				id;
@@ -24,8 +25,24 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	status;
 	pthread_mutex_t	meal_time;
-	//bool			end;
+	bool			end;
 	long			start_time;
+	int				n_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				n_meals;
+}	t_data;
+*/
+
+typedef struct s_philo
+{
+	int				id;
+}	t_philo;
+
+typedef struct s_data
+{
+	t_philo			*philo;
 	int				n_philo;
 	int				time_to_die;
 	int				time_to_eat;
