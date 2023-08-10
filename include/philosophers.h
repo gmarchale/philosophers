@@ -26,11 +26,11 @@ typedef struct s_data
 	pthread_mutex_t	meal_time;
 	//bool			end;
 	long			start_time;
-	int				num_p;
-	int				time_d;
-	int				time_e;
-	int				time_s;
-	int				num_e;
+	int				n_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				n_meals;
 }	t_data;
 
 /*** FUNCTIONS ***/

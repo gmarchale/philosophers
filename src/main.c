@@ -2,14 +2,14 @@
 
 int init_data(int argc, char **argv, t_data *data)
 {
-	data->num_p = ft_atoi(argv[1]);
-	data->time_d = ft_atoi(argv[2]);
-	data->time_e = ft_atoi(argv[3]);
-	data->time_s = ft_atoi(argv[4]);
+	data->n_philo = ft_atoi(argv[1]);
+	data->time_to_die = ft_atoi(argv[2]);
+	data->time_to_eat = ft_atoi(argv[3]);
+	data->time_to_sleep = ft_atoi(argv[4]);
 	if (argc == 6)
-		data->num_e = ft_atoi(argv[5]);
+		data->n_meals = ft_atoi(argv[5]);
 	else
-		data->num_e = 0;
+		data->n_meals = 0;
 	return (0);
 }
 
