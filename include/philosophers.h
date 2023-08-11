@@ -9,16 +9,26 @@
 
 /*** STRUCT ***/
 
-/*
 typedef struct s_philo
 {
 	int				id;
 	pthread_t		thread;
-	long			time_last_meal;
-	int				c_meals;
-	struct s_data	*data;
+	_Atomic long	time_last_meal;
+	_Atomic int		meal;
+	struct s_data	*data; // Useless ? Not yet used. 
 }	t_philo;
 
+typedef struct s_data
+{
+	t_philo			*philo;
+	int				n_philo;
+	int				time_to_die;
+	int				time_to_eat;
+	int				time_to_sleep;
+	int				n_meals;
+}	t_data;
+
+/*
 typedef struct s_data
 {
 	t_philo			*philo;
@@ -34,21 +44,6 @@ typedef struct s_data
 	int				n_meals;
 }	t_data;
 */
-
-typedef struct s_philo
-{
-	int				id;
-}	t_philo;
-
-typedef struct s_data
-{
-	t_philo			*philo;
-	int				n_philo;
-	int				time_to_die;
-	int				time_to_eat;
-	int				time_to_sleep;
-	int				n_meals;
-}	t_data;
 
 /*** FUNCTIONS ***/
 

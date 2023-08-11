@@ -14,12 +14,15 @@ int	init_data(int argc, char **argv, t_data *data)
 	return (0);
 }
 
-
 t_philo	create_philo(int i)
 {
 	t_philo	philo;
 
 	philo.id = i;
+	philo.time_last_meal = 0;
+	philo.meal = 0;
+	// create thread for each philo
+	// mais jsp si je le fais ici ou dans une autre fonction
 	return (philo);
 }
 
@@ -49,7 +52,8 @@ int	main(int argc, char **argv)
 
 	if (parser(argc, argv))
 		return (1);
-	init_data(argc, argv, &data);
+	if (init_data(argc, argv, &data))
+		return (1);
 	init_philo(&data);
 	// free les philos
 	printf("---Fin de la main---\n");
