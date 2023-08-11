@@ -14,19 +14,32 @@ int	init_data(int argc, char **argv, t_data *data)
 	return (0);
 }
 
-/*
-int	create_philo(t_data *data)
+
+t_philo	create_philo(int i)
 {
+	t_philo	philo;
+
+	philo.id = i;
+	return (philo);
 }
-*/
 
 int	init_philo(t_data *data)
 {
 	t_philo	*philo;
+	int		i;
 
+	philo = NULL;
 	philo = malloc(data->n_philo * sizeof(t_philo));
-	if (!philo)
-		return (0); // error
+	if (philo == NULL)
+		return (1); // error malloc
+	i = 0;
+	while (i < data->n_philo)
+	{
+		philo[i] = create_philo(i);
+		// create thread for each philo
+		printf("Philo.id = %d\n", philo[i].id);
+		i++;
+	}
 	return (0);
 }
 
@@ -38,6 +51,7 @@ int	main(int argc, char **argv)
 		return (1);
 	init_data(argc, argv, &data);
 	init_philo(&data);
+	// free les philos
 	printf("---Fin de la main---\n");
 	return (0);
 }

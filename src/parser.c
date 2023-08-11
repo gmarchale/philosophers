@@ -8,11 +8,10 @@ static int	parsing_error(int mode)
 		printf("Wrong input.\n");
 	else if (mode == -1)
 		printf("Number of philosophers must be greater than 0.\n");
-	printf("> ./philo num_of_philo time_to_die time_to_eat time_to_sleep [num_eat]\n");
 	return (1);
 }
 
-int check_arguments(char **argv)
+int	check_arguments(char **argv)
 {
 	int	i;
 	int	j;
@@ -32,7 +31,7 @@ int check_arguments(char **argv)
 	return (0);
 }
 
-int parser(int argc, char **argv)
+int	parser(int argc, char **argv)
 {
 	if (argc != 5 && argc != 6)
 		return (parsing_error(1));
