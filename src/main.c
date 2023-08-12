@@ -14,6 +14,12 @@ int	init_data(int argc, char **argv, t_data *data)
 	return (0);
 }
 
+void *routine()
+{
+	printf("Salut\n");
+	return (NULL);
+}
+
 t_philo	create_philo(int i)
 {
 	t_philo	philo;
@@ -26,12 +32,17 @@ t_philo	create_philo(int i)
 	return (philo);
 }
 
+
+
 int	init_philo(t_data *data)
 {
 	t_philo	*philo;
 	int		i;
+	pthread_t	*thread;
 
 	philo = NULL;
+	thread = NULL;
+	thread = malloc(data->n_philo * sizeof (pthread_t));
 	philo = malloc(data->n_philo * sizeof(t_philo));
 	if (philo == NULL)
 		return (1); // error malloc
@@ -40,9 +51,16 @@ int	init_philo(t_data *data)
 	{
 		philo[i] = create_philo(i);
 		// create thread for each philo
-		printf("Philo.id = %d\n", philo[i].id);
 		i++;
 	}
+	if (pthread_create(&thread[0], NULL, &routine, NULL) != 0)
+		return (1);
+	if (pthread_create(&thread[1], NULL, &routine, NULL) != 0)
+		return (1);
+	if (pthread_join(thread[0], NULL) != 0)
+		return (2);
+	if (pthread_join(thread[1], NULL) != 0)
+		return (2);
 	return (0);
 }
 
