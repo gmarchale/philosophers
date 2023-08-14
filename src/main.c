@@ -86,9 +86,7 @@ int	main(int argc, char **argv)
 		return (1);
 	if (init_data(argc, argv, &data) != 0)
 		return (1);
-	// init_philo(&data);
-	// free les philos si fail
-	if (init_philo_and_forks(&data))
+	if (init_philo_and_forks(&data) != 0)
 		return (1);
 	printf("---Fin de la main---\n");
 	return (0);
