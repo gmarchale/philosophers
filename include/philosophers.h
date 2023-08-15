@@ -42,4 +42,11 @@ int parser(int argc, char **argv);
 /* Atoi */
 int	ft_atoi(const char *str);
 
+/* Init */
+int	init_data(int argc, char **argv, t_data *data);
+int	init_philo_and_forks(t_data *data);
+
+/* Routine */
+void *routine();
+
 #endif
