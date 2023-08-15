@@ -49,4 +49,8 @@ int	init_philo_and_forks(t_data *data);
 /* Routine */
 void *routine();
 
+/* Utils */
+void	free_philo_and_forks(t_data *data);
+int	join_threads(t_data *data);
+
 #endif

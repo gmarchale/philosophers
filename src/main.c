@@ -12,12 +12,7 @@ int	main(int argc, char **argv)
 	if (init_philo_and_forks(&data) != 0)
 		return (1);
 
-	int i = 0;
-	while (i < data.n_philo)
-	{
-		pthread_join(data.philo[i].thread, NULL);
-		i++;
-	}
+	join_threads(&data);
 	printf("---Fin de la main---\n");
 	return (0);
 }

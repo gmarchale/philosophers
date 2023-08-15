@@ -5,6 +5,7 @@ FILES		=	main.c\
 				ft_atoi.c\
 				init.c\
 				routine.c\
+				utils.c\
 
 SRCS		=	$(addprefix src/, $(FILES))
 
