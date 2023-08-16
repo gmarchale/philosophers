@@ -5,4 +5,3 @@ void *routine()
 	printf("Salut\n");
 	return (NULL);
 }
-

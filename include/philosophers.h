@@ -36,21 +36,21 @@ typedef struct s_data
 /*** FUNCTIONS ***/
 
 /* Parser */
-int check_arguments(char **argv);
-int parser(int argc, char **argv);
+int		check_arguments(char **argv);
+int		parser(int argc, char **argv);
 
 /* Atoi */
-int	ft_atoi(const char *str);
+int		ft_atoi(const char *str);
 
 /* Init */
-int	init_data(int argc, char **argv, t_data *data);
-int	init_philo_and_forks(t_data *data);
+int		init_data(int argc, char **argv, t_data *data);
+int		init_philo_and_forks(t_data *data);
 
 /* Routine */
-void *routine();
+void	*routine();
 
 /* Utils */
 void	free_philo_and_forks(t_data *data);
-int	join_threads(t_data *data);
+int		join_threads(t_data *data);
 
 #endif

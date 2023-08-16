@@ -54,7 +54,7 @@ int	init_philo_and_forks(t_data *data)
 	{
 		if (pthread_mutex_init(&data->forks[i++], NULL))
 		{
-			//free_philo_and_forks(data);
+			free_philo_and_forks(data);
 			return (1);
 		}
 	}
@@ -63,7 +63,7 @@ int	init_philo_and_forks(t_data *data)
 	{
 		if (create_philo(data, i))
 		{
-			//free_philo_and_forks(data);
+			free_philo_and_forks(data);
 			return (1);
 		}
 		i++;
