@@ -35,6 +35,8 @@ typedef struct s_data
 
 /*** FUNCTIONS ***/
 
+void *life();
+
 /* Parser */
 int		check_arguments(char **argv);
 int		parser(int argc, char **argv);

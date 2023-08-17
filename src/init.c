@@ -38,7 +38,7 @@ static int	create_philo(t_data *data, int i)
 	data->philo[i].id = i;
 	data->philo[i].time_last_meal = 0; //find_ms()
 	data->philo[i].current_meal = 0;
-	if (pthread_create(&data->philo[i].thread, NULL, &routine, &data->philo[i]))
+	if (pthread_create(&data->philo[i].thread, NULL, &life, &data->philo[i]))
 		return (1);
 	return (0);
 }
