@@ -13,7 +13,7 @@ void	my_sleep(uint64_t time)
 	uint64_t	i;
 
 	i = get_time();
-	printf("%llu\n", i);
+	printf("Test my sleep = %llu\n", i); //printf
 	while (1)
 	{
 		if (get_time() - i >= time)
