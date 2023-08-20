@@ -1,19 +1,10 @@
 #include "../include/philosophers.h"
 
-uint64_t	get_time(void)
+void	my_sleep(long time)
 {
-	static struct timeval	tv;
-
-	gettimeofday(&tv, NULL);
-	return ((tv.tv_sec * 1000) + (tv.tv_usec / 1000));
-}
-
-void	my_sleep(uint64_t time)
-{
-	uint64_t	i;
+	long	i;
 
 	i = get_time();
-	printf("Test my sleep = %llu\n", i); //printf
 	while (1)
 	{
 		if (get_time() - i >= time)
@@ -33,8 +24,16 @@ void *life(void *tmp)
 	while (1)
 		if (philo_routine(philo))
 			break ;
-			*/
+	*/
 	return (NULL);
+}
+
+void	print_time(long start)
+{
+	long	time;
+
+	time = get_time() - start;
+	printf("%ld\n", time);
 }
 
 int	main(int argc, char **argv)
@@ -51,5 +50,6 @@ int	main(int argc, char **argv)
 	//monitoring
 	join_threads(&data);
 	printf("---Fin de la main---\n");
+	print_time(data.start_time);
 	return (0);
 }

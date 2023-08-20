@@ -6,6 +6,7 @@ FILES		=	main.c\
 				init.c\
 				routine.c\
 				utils.c\
+				time.c\
 
 SRCS		=	$(addprefix src/, $(FILES))
 

@@ -11,6 +11,7 @@ int	init_data(int argc, char **argv, t_data *data)
 		data->n_meals = ft_atoi(argv[5]);
 	if (data->time_to_die == 0)
 		return (1);
+	data->start_time = get_time();
 	return (0);
 }
 
@@ -36,7 +37,8 @@ static int	malloc_philo_and_forks(t_data *data)
 static int	create_philo(t_data *data, int i)
 {
 	data->philo[i].id = i;
-	data->philo[i].time_last_meal = 0; //find_ms()
+	data->philo[i].time_last_meal = get_time();
+	printf("Time last meal : %ld\n", data->philo[i].time_last_meal);
 	data->philo[i].current_meal = 0;
 	data->philo[i].data = data;
 	if (pthread_create(&data->philo[i].thread, NULL, &life, &data->philo[i]))

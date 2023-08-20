@@ -6,6 +6,7 @@
 # include <unistd.h>
 # include <pthread.h>
 # include <sys/time.h>
+# include <stdbool.h>
 
 /*** STRUCT ***/
 
@@ -15,7 +16,7 @@ typedef struct s_philo
 	pthread_t		thread;
 	_Atomic long	time_last_meal;
 	_Atomic int		current_meal;
-	struct s_data	*data; // Useless ? Not yet used. 
+	struct s_data	*data;
 }	t_philo;
 
 typedef struct s_data
@@ -24,7 +25,7 @@ typedef struct s_data
 	pthread_mutex_t	*forks;
 	pthread_mutex_t	status;
 	pthread_mutex_t	meal_time;
-	//bool			end;
+	bool			end;
 	long			start_time;
 	int				n_philo;
 	int				time_to_die;
@@ -54,5 +55,9 @@ void	*routine();
 /* Utils */
 void	free_philo_and_forks(t_data *data);
 int		join_threads(t_data *data);
+
+/* Time */
+long	get_time(void);
+long	time_elapsed(long start);
 
 #endif
