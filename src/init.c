@@ -38,8 +38,7 @@ static int	create_philo(t_data *data, int i)
 {
 	data->philo[i].id = i;
 	data->philo[i].time_last_meal = get_time();
-	printf("Time last meal : %ld\n", data->philo[i].time_last_meal);
-	data->philo[i].current_meal = 0;
+	data->philo[i].current_meal = data->n_meals;
 	data->philo[i].data = data;
 	if (pthread_create(&data->philo[i].thread, NULL, &life, &data->philo[i]))
 		return (1);

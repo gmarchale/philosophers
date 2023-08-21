@@ -13,6 +13,68 @@ void	my_sleep(long time)
 	}
 }
 
+void	print_time(long start)
+{
+	long	time;
+
+	time = get_time() - start;
+	printf("%ld\n", time);
+}
+
+int	check_end(t_data *data)
+{
+	int	status;
+
+	pthread_mutex_lock(&data->status);
+	if (data->end)
+		status = 1;
+	else
+		status = 0;
+	pthread_mutex_unlock(&data->status);
+	return (status);
+}
+
+int find_r_fork(t_philo *philo)
+{
+	if (philo->id == philo->data->n_philo - 1)
+		return (0);
+	else
+		return (philo->id + 1);
+}
+
+int	ft_eat(t_philo *philo)
+{
+	int r_fork;
+
+	r_fork = find_r_fork(philo);
+	pthread_mutex_lock(&philo->data->forks[philo->id]);
+	printf("%lu ms Philo %d has taken left fork\n", time_elapsed(philo->data->start_time), philo->id);
+	pthread_mutex_lock(&philo->data->forks[r_fork]);
+	printf("%lu ms Philo %d has taken right fork\n", time_elapsed(philo->data->start_time), philo->id);
+	philo->current_meal--;
+	pthread_mutex_lock(&philo->data->meal_time);
+	philo->time_last_meal = get_time();
+	pthread_mutex_unlock(&philo->data->meal_time);
+	printf("%lu ms Philo %d is eating\n", time_elapsed(philo->data->start_time), philo->id);
+	pthread_mutex_unlock(&philo->data->forks[philo->id]);
+	pthread_mutex_unlock(&philo->data->forks[r_fork]);
+	return (0);
+}
+
+void	ft_sleep(int time)
+{
+	long	start;
+	long	elapsed;
+
+	start = get_time();
+	elapsed = 0;
+	while (elapsed < time)
+	{
+		usleep(time * 1000);
+		elapsed = get_time() - start;
+	}
+}
+
 void *life(void *tmp)
 {
 	t_philo *philo;
@@ -20,20 +82,14 @@ void *life(void *tmp)
 	philo = tmp;
 	if (philo->id % 2 == 1)
 		my_sleep(50);
-	/*
-	while (1)
-		if (philo_routine(philo))
-			break ;
-	*/
+	while (!check_end(philo->data) && philo->current_meal != 0)
+	{
+		printf("%lu ms Philo %d is thinking\n", time_elapsed(philo->data->start_time), philo->id);
+		ft_eat(philo);
+		printf("%lu ms Philo %d is sleeping\n", time_elapsed(philo->data->start_time), philo->id);
+		ft_sleep(philo->data->time_to_sleep);
+	}
 	return (NULL);
-}
-
-void	print_time(long start)
-{
-	long	time;
-
-	time = get_time() - start;
-	printf("%ld\n", time);
 }
 
 int	main(int argc, char **argv)
