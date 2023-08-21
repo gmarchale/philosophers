@@ -13,14 +13,6 @@ void	my_sleep(long time)
 	}
 }
 
-void	print_time(long start)
-{
-	long	time;
-
-	time = get_time() - start;
-	printf("%ld\n", time);
-}
-
 int	check_end(t_data *data)
 {
 	int	status;
@@ -42,25 +34,6 @@ int find_r_fork(t_philo *philo)
 		return (philo->id + 1);
 }
 
-int	ft_eat(t_philo *philo)
-{
-	int r_fork;
-
-	r_fork = find_r_fork(philo);
-	pthread_mutex_lock(&philo->data->forks[philo->id]);
-	printf("%lu ms Philo %d has taken left fork\n", time_elapsed(philo->data->start_time), philo->id);
-	pthread_mutex_lock(&philo->data->forks[r_fork]);
-	printf("%lu ms Philo %d has taken right fork\n", time_elapsed(philo->data->start_time), philo->id);
-	philo->current_meal--;
-	pthread_mutex_lock(&philo->data->meal_time);
-	philo->time_last_meal = get_time();
-	pthread_mutex_unlock(&philo->data->meal_time);
-	printf("%lu ms Philo %d is eating\n", time_elapsed(philo->data->start_time), philo->id);
-	pthread_mutex_unlock(&philo->data->forks[philo->id]);
-	pthread_mutex_unlock(&philo->data->forks[r_fork]);
-	return (0);
-}
-
 void	ft_sleep(int time)
 {
 	long	start;
@@ -75,6 +48,26 @@ void	ft_sleep(int time)
 	}
 }
 
+int	ft_eat(t_philo *philo)
+{
+	int r_fork;
+
+	r_fork = find_r_fork(philo);
+	pthread_mutex_lock(&philo->data->forks[philo->id]);
+	printf("%lu ms Philo %d has taken left fork\n", time_elapsed(philo->data->start_time), philo->id);
+	pthread_mutex_lock(&philo->data->forks[r_fork]);
+	printf("%lu ms Philo %d has taken right fork\n", time_elapsed(philo->data->start_time), philo->id);
+	philo->current_meal--;
+	pthread_mutex_lock(&philo->data->meal_time);
+	philo->time_last_meal = get_time();
+	pthread_mutex_unlock(&philo->data->meal_time);
+	printf("%lu ms Philo %d is eating\n", time_elapsed(philo->data->start_time), philo->id);
+	ft_sleep(philo->data->time_to_eat);
+	pthread_mutex_unlock(&philo->data->forks[philo->id]);
+	pthread_mutex_unlock(&philo->data->forks[r_fork]);
+	return (0);
+}
+
 void *life(void *tmp)
 {
 	t_philo *philo;
@@ -84,10 +77,11 @@ void *life(void *tmp)
 		my_sleep(50);
 	while (!check_end(philo->data) && philo->current_meal != 0)
 	{
-		printf("%lu ms Philo %d is thinking\n", time_elapsed(philo->data->start_time), philo->id);
 		ft_eat(philo);
+		printf("%lu ms Philo %d is thinking\n", time_elapsed(philo->data->start_time), philo->id);
 		printf("%lu ms Philo %d is sleeping\n", time_elapsed(philo->data->start_time), philo->id);
 		ft_sleep(philo->data->time_to_sleep);
+		printf("%lu ms Philo %d finished sleeping\n", time_elapsed(philo->data->start_time), philo->id);
 	}
 	return (NULL);
 }
@@ -106,6 +100,5 @@ int	main(int argc, char **argv)
 	//monitoring
 	join_threads(&data);
 	printf("---Fin de la main---\n");
-	print_time(data.start_time);
 	return (0);
 }
