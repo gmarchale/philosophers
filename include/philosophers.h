@@ -36,7 +36,6 @@ typedef struct s_data
 
 /*** FUNCTIONS ***/
 
-void *life();
 
 /* Parser */
 int		check_arguments(char **argv);
@@ -59,5 +58,12 @@ int		join_threads(t_data *data);
 /* Time */
 long	get_time(void);
 long	time_elapsed(long start);
+void	my_sleep(long time);
+
+/* Philo */
+void *life(void *tmp);
+
+/* Monitoring */
+int	check_end(t_data *data);
 
 #endif

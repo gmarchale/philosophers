@@ -12,3 +12,16 @@ long	time_elapsed(long start)
 {
 	return (get_time() - start);
 }
+
+void	my_sleep(long time)
+{
+	long	i;
+
+	i = get_time();
+	while (1)
+	{
+		if (get_time() - i >= time)
+			break ;
+		usleep(100);
+	}
+}

@@ -7,6 +7,8 @@ FILES		=	main.c\
 				routine.c\
 				utils.c\
 				time.c\
+				philo.c\
+				monitoring.c\
 
 SRCS		=	$(addprefix src/, $(FILES))
 
