@@ -2,9 +2,7 @@ NAME		=	philo
 
 FILES		=	main.c\
 				parser.c\
-				ft_atoi.c\
 				init.c\
-				routine.c\
 				utils.c\
 				time.c\
 				philo.c\

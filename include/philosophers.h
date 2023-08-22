@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   philosophers.h                                     :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 18:02:29 by gmarchal          #+#    #+#             */
+/*   Updated: 2023/08/22 18:03:09 by gmarchal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef PHILOSOPHERS_H
 # define PHILOSOPHERS_H
 
@@ -36,24 +48,19 @@ typedef struct s_data
 
 /*** FUNCTIONS ***/
 
-
 /* Parser */
 int		check_arguments(char **argv);
 int		parser(int argc, char **argv);
-
-/* Atoi */
-int		ft_atoi(const char *str);
 
 /* Init */
 int		init_data(int argc, char **argv, t_data *data);
 int		init_philo_and_forks(t_data *data);
 
-/* Routine */
-void	*routine(); // a delete
-
 /* Utils */
 void	free_philo_and_forks(t_data *data);
 int		join_threads(t_data *data);
+void	set_meal_time(t_philo *philo);
+int		ft_atoi(const char *str);
 
 /* Time */
 long	get_time(void);
@@ -62,9 +69,9 @@ void	my_sleep(long time);
 
 /* Philo */
 void	*life(void *tmp);
-void	set_meal_time(t_philo *philo);
 
 /* Monitoring */
-int	check_end(t_data *data);
+int		check_end(t_data *data);
+int		monitoring(t_data *data);
 
 #endif

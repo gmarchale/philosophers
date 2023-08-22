@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   init.c                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2023/08/22 18:05:00 by gmarchal          #+#    #+#             */
+/*   Updated: 2023/08/22 18:05:02 by gmarchal         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "../include/philosophers.h"
 
 int	init_data(int argc, char **argv, t_data *data)
@@ -14,7 +26,6 @@ int	init_data(int argc, char **argv, t_data *data)
 	data->start_time = get_time();
 	return (0);
 }
-
 
 static int	malloc_philo_and_forks(t_data *data)
 {
