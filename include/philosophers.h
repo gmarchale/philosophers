@@ -49,7 +49,7 @@ int		init_data(int argc, char **argv, t_data *data);
 int		init_philo_and_forks(t_data *data);
 
 /* Routine */
-void	*routine();
+void	*routine(); // a delete
 
 /* Utils */
 void	free_philo_and_forks(t_data *data);
@@ -61,7 +61,8 @@ long	time_elapsed(long start);
 void	my_sleep(long time);
 
 /* Philo */
-void *life(void *tmp);
+void	*life(void *tmp);
+void	set_meal_time(t_philo *philo);
 
 /* Monitoring */
 int	check_end(t_data *data);
