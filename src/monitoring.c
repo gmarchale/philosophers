@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   monitoring.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:05:36 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/22 18:05:38 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:23:49 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ int	monitoring(t_data *data)
 			free_philo_and_forks(data);
 			return (1);
 		}
-		usleep(1000);
+		my_sleep(1000);
 	}
 	free_philo_and_forks(data);
 	return (0);

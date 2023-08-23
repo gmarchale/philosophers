@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   philo.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:06:50 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/22 18:08:06 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:27:07 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,20 +18,6 @@ static int	find_r_fork(t_philo *philo)
 		return (0);
 	else
 		return (philo->id + 1);
-}
-
-static void	ft_sleep(int time)
-{
-	long	start;
-	long	elapsed;
-
-	start = get_time();
-	elapsed = 0;
-	while (elapsed < time)
-	{
-		usleep(time * 1000);
-		elapsed = get_time() - start;
-	}
 }
 
 void	print_message(char *str, int id, t_data *data, long ms)
@@ -57,7 +43,7 @@ static int	ft_eat(t_philo *philo)
 	philo->current_meal--;
 	print_message("is eating", philo->id, philo->data,
 		time_elapsed(philo->data->start_time));
-	ft_sleep(philo->data->time_to_eat);
+	my_sleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->data->forks[r_fork]);
 	pthread_mutex_unlock(&philo->data->forks[philo->id]);
 	return (0);
