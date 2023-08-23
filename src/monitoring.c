@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:05:36 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/23 15:23:49 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/23 20:29:23 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,7 @@ void	change_end(t_data *data)
 	pthread_mutex_lock(&data->status);
 	data->end = true;
 	pthread_mutex_unlock(&data->status);
+	my_sleep(1);
 }
 
 long	read_meal_time(t_philo *philo)
@@ -55,7 +56,7 @@ int	sub_monitoring(t_data *data)
 		{
 			change_end(data);
 			if (data->philo[i].current_meal != 0)
-				printf("%ld ms Philo %d has died\n",
+				printf("%ld ms Philo %d died\n",
 					time_elapsed(data->start_time), data->philo[i].id);
 			return (1);
 		}
@@ -73,7 +74,6 @@ int	monitoring(t_data *data)
 			free_philo_and_forks(data);
 			return (1);
 		}
-		my_sleep(1000);
 	}
 	free_philo_and_forks(data);
 	return (0);
