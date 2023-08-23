@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:06:50 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/23 15:27:07 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/23 15:34:52 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,7 @@ void	*life(void *tmp)
 			time_elapsed(philo->data->start_time), philo->id);
 		printf("%lu ms Philo %d is sleeping\n", 
 			time_elapsed(philo->data->start_time), philo->id);
-		ft_sleep(philo->data->time_to_sleep);
+		my_sleep(philo->data->time_to_sleep);
 	}
 	return (NULL);
 }
