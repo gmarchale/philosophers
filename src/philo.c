@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:06:50 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/23 15:34:52 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/24 20:21:17 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,11 @@ static int	ft_eat(t_philo *philo)
 	pthread_mutex_lock(&philo->data->forks[philo->id]);
 	print_message("has picked up a fork", philo->id, philo->data,
 		time_elapsed(philo->data->start_time));
+	if (r_fork == 0 && philo->id == 0)
+	{
+		my_sleep(philo->data->time_to_die);
+		return (1);
+	}	
 	pthread_mutex_lock(&philo->data->forks[r_fork]);
 	print_message("has picked up a fork", philo->id, philo->data,
 		time_elapsed(philo->data->start_time));
@@ -58,7 +63,8 @@ void	*life(void *tmp)
 		my_sleep(50);
 	while (!check_end(philo->data) && philo->current_meal != 0)
 	{
-		ft_eat(philo);
+		if (ft_eat(philo))
+			return (NULL);
 		if (check_end(philo->data))
 			return (NULL);
 		printf("%lu ms Philo %d is thinking\n", 
