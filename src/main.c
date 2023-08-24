@@ -6,7 +6,7 @@
 /*   By: gmarchal <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:05:17 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/22 18:05:18 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:30:12 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,5 +25,6 @@ int	main(int argc, char **argv)
 	if (monitoring(&data))
 		return (1);
 	join_threads(&data);
+	free_philo_and_forks(&data);
 	return (0);
 }

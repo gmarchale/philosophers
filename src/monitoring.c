@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:05:36 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/23 20:29:23 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/24 17:30:41 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,8 @@ int	monitoring(t_data *data)
 	{
 		if (sub_monitoring(data))
 		{
-			free_philo_and_forks(data);
-			return (1);
+			return (0);
 		}
 	}
-	free_philo_and_forks(data);
 	return (0);
 }
