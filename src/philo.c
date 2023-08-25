@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:06:50 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/24 20:21:17 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/25 15:45:39 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ static int	ft_eat(t_philo *philo)
 	{
 		my_sleep(philo->data->time_to_die);
 		return (1);
-	}	
+	}
 	pthread_mutex_lock(&philo->data->forks[r_fork]);
 	print_message("has picked up a fork", philo->id, philo->data,
 		time_elapsed(philo->data->start_time));

@@ -6,7 +6,7 @@
 /*   By: gmarchal <gmarchal@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/08/22 18:05:36 by gmarchal          #+#    #+#             */
-/*   Updated: 2023/08/24 17:30:41 by gmarchal         ###   ########.fr       */
+/*   Updated: 2023/08/25 15:39:36 by gmarchal         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	change_end(t_data *data)
 	pthread_mutex_lock(&data->status);
 	data->end = true;
 	pthread_mutex_unlock(&data->status);
-	my_sleep(1);
 }
 
 long	read_meal_time(t_philo *philo)
@@ -70,9 +69,7 @@ int	monitoring(t_data *data)
 	while (!check_end(data))
 	{
 		if (sub_monitoring(data))
-		{
 			return (0);
-		}
 	}
 	return (0);
 }
