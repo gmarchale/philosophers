@@ -23,6 +23,7 @@ static int	find_r_fork(t_philo *philo)
 void	print_message(char *str, int id, t_data *data, long ms)
 {
 	pthread_mutex_lock(&data->status);
+	ms = time_elapsed(data->start_time);
 	if (!data->end)
 		printf("%ld ms Philo %i %s\n", ms, id, str);
 	pthread_mutex_unlock(&data->status);
@@ -34,20 +35,17 @@ static int	ft_eat(t_philo *philo)
 
 	r_fork = find_r_fork(philo);
 	pthread_mutex_lock(&philo->data->forks[philo->id]);
-	print_message("has picked up a fork", philo->id, philo->data,
-		time_elapsed(philo->data->start_time));
+	print_message("has picked up a fork", philo->id, philo->data, 0);
 	if (r_fork == 0 && philo->id == 0)
 	{
 		my_sleep(philo->data->time_to_die);
 		return (1);
 	}
 	pthread_mutex_lock(&philo->data->forks[r_fork]);
-	print_message("has picked up a fork", philo->id, philo->data,
-		time_elapsed(philo->data->start_time));
+	print_message("has picked up a fork", philo->id, philo->data, 0);
 	set_meal_time(philo);
 	philo->current_meal--;
-	print_message("is eating", philo->id, philo->data,
-		time_elapsed(philo->data->start_time));
+	print_message("is eating", philo->id, philo->data, 0);
 	my_sleep(philo->data->time_to_eat);
 	pthread_mutex_unlock(&philo->data->forks[r_fork]);
 	pthread_mutex_unlock(&philo->data->forks[philo->id]);
@@ -67,10 +65,8 @@ void	*life(void *tmp)
 			return (NULL);
 		if (check_end(philo->data))
 			return (NULL);
-		printf("%lu ms Philo %d is thinking\n", 
-			time_elapsed(philo->data->start_time), philo->id);
-		printf("%lu ms Philo %d is sleeping\n", 
-			time_elapsed(philo->data->start_time), philo->id);
+		print_message("is thinking", philo->id, philo->data, 0);
+		print_message("is sleeping", philo->id, philo->data, 0);
 		my_sleep(philo->data->time_to_sleep);
 	}
 	return (NULL);
